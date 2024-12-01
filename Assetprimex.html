@@ -1,0 +1,50 @@
+const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                    const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                    const state = states[Math.floor(Math.random() * states.length)];
+                    const initialInvestment = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+                    const withdrawalAmount = Math.floor(Math.random() * 750001) + 250000;
+                    const date = new Date(2024, Math.floor(Math.random() * 11), Math.floor(Math.random() * 28) + 1);
+                    const transactionID = generateTransactionID();
+
+                    document.write(
+                        <tr>
+                            <td><span class="transaction-id">${transactionID}</span></td>
+                            <td>${firstName} ${lastName}</td>
+                            <td>${date.toLocaleDateString()}</td>
+                            <td>${state}</td>
+                            <td>$${initialInvestment.toLocaleString()}</td>
+                            <td>$${withdrawalAmount.toLocaleString()}</td>
+                            <td><span class="completed">Completed</span></td>
+                        </tr>
+                    );
+                }
+
+                // Search function
+                function searchTable() {
+                    const input = document.getElementById("searchBox");
+                    const filter = input.value.toLowerCase();
+                    const table = document.getElementById("withdrawalTable");
+                    const trs = table.getElementsByTagName("tr");
+
+                    for (let i = 1; i < trs.length; i++) {
+                        let td = trs[i].getElementsByTagName("td");
+                        let match = false;
+                        
+                        for (let j = 0; j < td.length; j++) {
+                            if (td[j] && td[j].innerText.toLowerCase().indexOf(filter) > -1) {
+                                match = true;
+                            }
+                        }
+                        
+                        if (match) {
+                            trs[i].style.display = "";
+                        } else {
+                            trs[i].style.display = "none";
+                        }
+                    }
+                }
+            </script>
+        </tbody>
+    </table>
+</body>
+</html>
